@@ -1,0 +1,251 @@
+<div class="container-fluid body vh-100">
+  <div class="content">
+    <div class="text">
+      <img src="assets/logo/zippySocialLogoLogin.png" /><strong
+        >ippy SignUp</strong
+      >
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="field">
+        <input class="input" type="text" formControlName="name" required />
+        <span class="ps-3 fas fa-user"></span>
+        <label class="label">Enter Name </label>
+      </div>
+      <small
+        *ngIf="
+          shouldShowError('name') &&
+          !registerForm.controls['name'].hasError('pattern') &&
+          !registerForm.get('name')?.hasError('serverError')
+        "
+        class="text-danger"
+      >
+        Please enter Name.
+      </small>
+      <small
+        class="text-danger"
+        *ngIf="registerForm.get('name')?.hasError('serverError')"
+        >{{ registerForm.get('name')?.errors?.['serverError'] }}</small
+      >
+      <small
+        class="text-danger"
+        *ngIf="registerForm.controls['name'].hasError('pattern')"
+      >
+        Name not allow numbers.
+      </small>
+      <div class="field">
+        <input class="input" type="text" formControlName="email" required />
+        <span class="ps-3 fa-solid fa-envelope"></span>
+        <label class="label">Enter Email </label>
+      </div>
+      <small
+        *ngIf="
+          shouldShowError('email') &&
+          !registerForm.controls['email'].hasError('pattern') &&
+          !registerForm.get('email')?.hasError('serverError')
+        "
+        class="text-danger"
+      >
+        Please enter Email.
+      </small>
+      <small
+        class="text-danger"
+        *ngIf="registerForm.get('email')?.hasError('serverError')"
+        >{{ registerForm.get('email')?.errors?.['serverError'] }}</small
+      >
+      <small
+        class="text-danger"
+        *ngIf="registerForm.controls['email'].hasError('pattern')"
+      >
+        Enter valid email.
+      </small>
+      <div class="field">
+        <input
+          class="input"
+          type="password"
+          formControlName="password"
+          required
+        />
+        <span class="ps-3 fas fa-lock"></span>
+        <label class="label">Password</label>
+      </div>
+      <small
+        *ngIf="
+          shouldShowError('password') &&
+          !registerForm.controls['password'].hasError('pattern') &&
+          !registerForm.get('password')?.hasError('serverError')
+        "
+        class="text-danger"
+      >
+        Please enter Password.
+      </small>
+      <small
+        class="text-danger"
+        *ngIf="registerForm.get('password')?.hasError('serverError')"
+        >{{ registerForm.get('password')?.errors?.['serverError'] }}</small
+      >
+      <small
+        class="text-danger"
+        *ngIf="registerForm.controls['password'].hasError('pattern')"
+      >
+        Must have upper and lowercash, specail char., number and at least 8
+        character.
+      </small>
+      <div class="field">
+        <input
+          class="input"
+          type="password"
+          formControlName="conPassword"
+          required
+        />
+        <span class="ps-3 fas fa-lock"></span>
+        <label class="label">Confirm password</label>
+      </div>
+      <small
+        *ngIf="registerForm.get('conPassword')?.hasError('serverError')"
+        >{{ registerForm.get('conPassword')?.errors?.['serverError'] }}</small
+      ><small
+        *ngIf="registerForm.errors?.['mismatch']||submitted&&shouldShowError('conPassword')"
+        class="text-danger"
+      >
+        Passwords do not match!</small
+      >
+      <div class="field">
+        <input class="input" type="number" formControlName="phone" required />
+        <span class="ps-3 fa-solid fa-mobile"></span>
+        <label class="label">Mobile number</label>
+      </div>
+      <small
+        *ngIf="registerForm.get('phone')?.hasError('serverError')"
+        >{{ registerForm.get('phone')?.errors?.['serverError'] }}</small
+      ><small
+        *ngIf="
+          shouldShowError('phone') &&
+          !registerForm.get('phone')?.hasError('minPhoneValue') &&
+          !registerForm.get('phone')?.hasError('maxPhoneValue') &&
+          !registerForm.get('phone')?.hasError('serverError')
+        "
+        class="text-danger"
+      >
+        Please enter phone number!</small
+      >
+      <small
+        *ngIf="registerForm.get('phone')?.hasError('minPhoneValue')"
+        class="text-danger"
+      >
+        Phone number must have at least 10 digits.
+      </small>
+      <small
+        *ngIf="registerForm.get('phone')?.hasError('maxPhoneValue')"
+        class="text-danger"
+      >
+        Phone number cannot exceed 12.
+      </small>
+      <div class="field">
+        <input
+          class="input"
+          style="color: #5679ad; font-weight: 500; font-size: 16px !important"
+          type="date"
+          formControlName="dOB"
+          required
+        />
+        <span class="ps-3 fa-solid fa-cake-candles"></span>
+      </div>
+      <small
+        class="text-danger"
+        *ngIf="
+          shouldShowError('dOB') &&
+          !registerForm.get('dOB')?.hasError('serverError')
+        "
+        >Enter Birthday</small
+      ><small
+        class="text-danger"
+        *ngIf="registerForm.get('dOB')?.hasError('serverError')"
+        >{{ registerForm.get('dOB')?.errors?.['serverError'] }}</small
+      >
+      <div class="field">
+        <input class="input" type="text" formControlName="aboutYou" required />
+        <span class="ps-3 fa fa-info-circle"></span>
+        <label class="label">Enter About You </label>
+      </div>
+      <small
+        *ngIf="
+          shouldShowError('aboutYou') &&
+          !registerForm.get('aboutYou')?.hasError('serverError')
+        "
+        class="text-danger"
+      >
+        Please About You.
+      </small>
+      <small
+        class="text-danger"
+        *ngIf="registerForm.get('aboutYou')?.hasError('serverError')"
+        >{{ registerForm.get('aboutYou')?.errors?.['serverError'] }}</small
+      >
+
+      <div class="row">
+        <div class="col-8 radio-col">
+          <i
+            class="fa-solid fa-person-half-dress fa-xl gender-icon float-start"
+          ></i>
+          <input
+            class="me-1"
+            value="Male"
+            type="radio"
+            formControlName="gender"
+            id="gender-male"
+          />
+          <label class="radio-label" for="gender-male">Male</label>
+          <input
+            class="me-1"
+            value="Female"
+            type="radio"
+            formControlName="gender"
+            id="gender-female"
+          />
+          <label class="radio-label" for="gender-female">Female</label>
+          <input
+            class="me-1"
+            value="Other"
+            type="radio"
+            formControlName="gender"
+            id="gender-other"
+          />
+          <label class="radio-label" for="gender-other">Other</label>
+        </div>
+        <div class="col">
+          <div class="field">
+            <input
+              id="profileInput"
+              type="file"
+              accept="image/*"
+              formControlName="photo"
+              required
+              style="display: none"
+              (change)="onFileSelected($event)"
+            />
+
+            <label class="profile-label" for="profileInput">
+              Profile
+              <div class="image-preview">
+                <img
+                  for="profileInput"
+                  *ngIf="!isSelectImage"
+                  src="assets/img/def-profile-person.png"
+                  alt="Selected Image"
+                />
+              </div>
+              <div class="image-preview" *ngIf="imagePreview">
+                <img [src]="imagePreview" alt="Selected Image" />
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <button type="submit">Sign in</button>
+      <div class="sign-up">
+        Already have an account?
+        <a routerLink="/login">Login</a>
+      </div>
+    </form>
+  </div>
+</div>

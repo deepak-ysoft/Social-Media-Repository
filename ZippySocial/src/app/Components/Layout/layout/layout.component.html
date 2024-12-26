@@ -1,0 +1,228 @@
+<header class="container-fluid layout-header">
+  <div class="row p-2 align-items-center">
+    <div class="col d-flex justify-content-start">
+      <img src="assets/logo/zippySocialLogo.png" width="40px" />
+      <span class="zippy-logo">ippy Social</span>
+    </div>
+    <div class="col d-flex justify-content-center">
+      <input
+        type="text"
+        placeholder="Search creatores..."
+        class="form-control rounded-pill search-creatores ps-4"
+      />
+    </div>
+    <div class="col d-flex justify-content-end">
+      <span class="mt-2 me-3">{{ userData.user.name }}</span>
+      <img
+        [src]="userData.user.imagePath"
+        alt=""
+        width="45px"
+        class="rounded-circle"
+      />
+      <button class="btn" *ngIf="!isLargeScreen" (click)="toggleSidebar()">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="main container-fluid h-auto">
+  <div class="row">
+    <div
+      *ngIf="showSidebar || isLargeScreen"
+      class="col-md-3 col-lg-3 col-xl-3 col-xxl-3 d-flex justify-content-center mb-5 mt-1"
+    >
+      <aside class="bg-white rounded-4 d-flex justify-content-center">
+        <ul class="sidebar-nav mt-5 w-100 me-3 ms-3">
+          <li class="nav-item">
+            <a
+              class="nav-link collapsed d-flex justify-content-center"
+              routerLink=""
+            >
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link collapsed d-flex justify-content-center"
+              routerLink=""
+            >
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link collapsed d-flex justify-content-center"
+              routerLink=""
+            >
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link collapsed d-flex justify-content-center"
+              routerLink=""
+            >
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link collapsed d-flex justify-content-center"
+              routerLink=""
+            >
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link collapsed d-flex justify-content-center"
+              routerLink=""
+            >
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link collapsed d-flex justify-content-center"
+              routerLink=""
+            >
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link collapsed d-flex justify-content-center"
+              routerLink=""
+            >
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link collapsed d-flex justify-content-center"
+              routerLink=""
+            >
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link collapsed d-flex justify-content-center"
+              routerLink=""
+            >
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link collapsed d-flex justify-content-center"
+              routerLink=""
+            >
+              <span>Dashboard</span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+    <div class="col-md-12 col-lg-9 col-xl-5 col-xxl-5 bg-white main-body mt-1">
+      <app-root></app-root>
+    </div>
+    <div class="col-xl-4 col-xxl-4 mb-5 mt-1 m-0">
+      <div class="bg-white mt-0 p-4 rounded-4 align-items-center">
+        <div class="row">
+          <div class="col">
+            <img
+              src="{{ userData.user.imagePath }}"
+              class="rounded-5"
+              width="150px"
+              alt=""
+            />
+          </div>
+          <div class="col">
+            <div class="fa-xl mt-2 mb-4 d-flex justify-content-center">
+              <b>{{ userData.user.name }}</b>
+            </div>
+
+            <div class="row">
+              <div class="mb-1 col-6">Age {{ userage }}</div>
+              <div class="mb-1 col-6 d-flex justify-content-end">Followers</div>
+            </div>
+            <div class="row">
+              <div class="mb-1 col-12 d-flex justify-content-center">
+                Totle Post
+              </div>
+            </div>
+            <div
+              class="row btn btn-outline-success m-0 w-100"
+              (click)="addPost()"
+            >
+              <span class="fa-solid fa-upload"></span>
+              <span class="">Add post</span>
+            </div>
+          </div>
+          <div class="col">
+            <div>{{ userData.user.aboutYou }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white mt-1 p-4 align-items-center rounded-4">
+        <p class="m-0">messages-list works!</p>
+      </div>
+    </div>
+  </div>
+</main>
+<!-- <div
+  id="addpost"
+  class="modal fade flip show"
+  tabindex="-1"
+  aria-labelledby="addpostLabel"
+  style="display: block"
+  aria-modal="true"
+  role="dialog"
+  #addpost
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addpostLabel">Modal Heading</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+ -->
+<div
+  class="modal fade flip show"
+  id="addpost"
+  tabindex="-1"
+  aria-hidden="true"
+  #addpost
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Post</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">Modal body content here</div>
+    </div>
+  </div>
+</div>

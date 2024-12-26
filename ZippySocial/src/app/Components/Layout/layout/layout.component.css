@@ -1,0 +1,60 @@
+.search-creatores {
+   height: 48px;
+   background-color: rgb(215, 223, 250);
+}
+
+.zippy-logo {
+   margin: 2px 0 0 2px;
+   font-weight: 800;
+   font-size: 25px;
+   text-shadow: -1px 2px rgba(153, 0, 255, 0.699);
+}
+
+.main {
+   background-color: rgb(215, 223, 250);
+   border-radius: 20px;
+   min-height: calc(100vh);
+}
+
+.main-body {
+   max-height: calc(100vh - 90px);
+   overflow: auto;
+   border-radius: 20px;
+
+   -ms-overflow-style: none; /* IE and Edge */
+   scrollbar-width: none; /* Firefox */
+}
+.main-body::-webkit-scrollbar {
+   display: none;
+}
+
+aside{
+   width: 100%;
+}
+
+.nav-item {
+   margin-bottom: 3%;
+   font-weight: 650;
+   font-size: larger;
+}
+
+ul li a span {
+   background-color: rgb(215, 223, 250);
+   border-radius: 30px;
+   padding: 10px 50px;
+   width: 100%;
+   text-align-last:center;
+}
+
+ul {
+   list-style-type: none;
+   padding-left: 0px;
+}
+@media (max-width: 992px) {
+   .main {
+      padding: 0;
+   }
+   .main-body {
+      max-width: 100%;
+   }
+}

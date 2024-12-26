@@ -1,0 +1,175 @@
+<div class="story-field d-flex rounded overflow-auto p-2">
+  <!-- Add Story -->
+  <div class="story-item text-center me-2">
+    <div
+      class="add-story rounded-circle bg-light d-flex justify-content-center align-items-center"
+      style="width: 80px; height: 80px"
+      (click)="fileInput.click()"
+    >
+      <i class="bi bi-plus-lg"></i>
+    </div>
+    <small>Add Story</small>
+    <input
+      #fileInput
+      type="file"
+      class="d-none"
+      (change)="handleFileInput($event)"
+      accept="image/*,video/*"
+    />
+  </div>
+
+  <!-- Display Stories -->
+  <div *ngFor="let group of stories | keyvalue">
+    <div
+      *ngFor="let story of group.value; let i = index"
+      class="story-item text-center me-2"
+      (click)="openStory(story.userId)"
+    >
+      <div
+        *ngIf="i < 1"
+        class="story rounded-circle cursor-pointer"
+        [ngStyle]="{ 'background-image': 'url(' + story.userImage + ')' }"
+        style="
+          width: 80px;
+          height: 80px;
+          background-size: cover;
+          background-position: center;
+        "
+      ></div>
+      <small *ngIf="i < 1"> {{ story.userName }} </small>
+    </div>
+  </div>
+
+  <!-- Story Viewer -->
+  <div class="story-viewer" *ngIf="currentUserStories">
+    <button
+      type="button"
+      (click)="closeStory()"
+      class="btn-close close-button"
+      aria-label="Close"
+    ></button>
+    <div class="story-content d-flex justify-content-center align-items-center">
+      <!-- Display Image or Video -->
+      <ng-container>
+        <img
+          *ngIf="currentUserStories[0][currentStoryIndex].fileType == 'image'"
+          [src]="currentUserStories[0][currentStoryIndex].path"
+          alt="Story"
+          class="img-fluid"
+        />
+        <video
+          *ngIf="currentUserStories[0][currentStoryIndex].fileType == 'video'"
+          [src]="currentUserStories[0][currentStoryIndex].path"
+          controls
+          autoplay
+          class="img-fluid"
+        ></video>
+      </ng-container>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="story-navigation">
+      <button (click)="prevStory()" [disabled]="currentStoryIndex === 0">
+        Previous
+      </button>
+      <button
+        (click)="nextStory()"
+        [disabled]="currentStoryIndex === currentUserStories.stories.length - 1"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- posts -->
+
+<div class="post-display-container">
+  <h3>Posts</h3>
+  <div
+    *ngFor="let post of posts"
+    class="post-card border border-1 rounded mb-2 pt-2"
+  >
+    <div class="post-header ms-4">
+      <img
+        src="assets/img/story-1.JPEG"
+        alt="userImage"
+        width="40"
+        class="rounded-circle"
+      /><strong>{{ post.username }}</strong>
+      <span>{{ post.createdAt | date }}</span>
+    </div>
+    <p class="m-0 ms-4">{{ post.content }}</p>
+    <img
+      *ngIf="post.imageUrl"
+      [src]="post.imageUrl"
+      alt="Post image"
+      class="post-image"
+    />
+    <div class="row ms-3 mb-3">
+      <span class="col-auto"
+        ><a
+          >like<i
+            [ngClass]="isLike ? 'text-danger' : ''"
+            (click)="Like()"
+            class="fa fa-thumbs-up ms-1"
+          ></i></a
+      ></span>
+      <span class="col-auto"
+        ><a
+          data-bs-toggle="modal"
+          data-bs-target="#commentsModal"
+          (click)="comment()"
+          >comment<i class="fa-solid fa-comment ms-1"></i
+        ></a>
+      </span>
+      <span class="col-auto"
+        ><a
+          data-bs-toggle="modal"
+          data-bs-target="#ShareModal"
+          (click)="share()"
+          >share<i class="fa-solid fa-share ms-1"></i
+        ></a>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div
+  id="commentsModal"
+  class="modal fade"
+  tabindex="-1"
+  aria-modal="true"
+  role="dialog"
+  #commentsModal
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content overflow-hidden">
+      <div class="modal-header">
+        <h5 class="modal-title" id="commentsModalLabel">Comments</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body p-5">Comments<br /></div>
+    </div>
+  </div>
+</div>
+
+<div
+  id="ShareModal"
+  class="modal fade"
+  tabindex="-1"
+  aria-modal="true"
+  role="dialog"
+  #ShareModal
+>
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content overflow-hidden">
+      <div class="modal-body p-5">Share<br /></div>
+    </div>
+  </div>
+</div>

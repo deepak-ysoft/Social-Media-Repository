@@ -1,0 +1,10 @@
+a {
+   cursor: pointer;
+}
+.modal-open {
+   overflow: auto !important; /* Allow scrolling */
+ }
+
+ body{
+   overflow: hidden;
+}

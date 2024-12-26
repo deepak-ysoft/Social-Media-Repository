@@ -1,0 +1,65 @@
+<div class="container-fluid body vh-100">
+  <div class="content">
+    <div class="text">
+      <img src="assets/logo/zippySocialLogoLogin.png" /><strong
+        >ippy Login</strong
+      >
+    </div>
+    <form (ngSubmit)="login()" [formGroup]="onLoginForm">
+      <div class="field">
+        <input type="text" formControlName="email" required />
+        <span class="ps-3 fas fa-user"></span>
+        <label>Enter Email </label>
+      </div>
+      <small
+        *ngIf="onLoginForm.get('email')?.hasError('serverError')"
+        >{{ onLoginForm.get('email')?.errors?.['serverError'] }}</small
+      ><small
+        *ngIf="
+          shouldShowError('email') &&
+          !onLoginForm.get('email')?.hasError('serverError') &&
+          !onLoginForm.controls['email'].hasError('pattern')
+        "
+        class="text-danger"
+      >
+        Please enter Email!</small
+      ><small
+        class="text-danger"
+        *ngIf="onLoginForm.controls['email'].hasError('pattern')"
+      >
+        Invalid Email.
+      </small>
+      <div class="field">
+        <input type="password" formControlName="password" required />
+        <span class="ps-3 fas fa-lock"></span>
+        <label>Password</label>
+      </div>
+      <small
+        *ngIf="onLoginForm.get('password')?.hasError('serverError')"
+        >{{ onLoginForm.get('password')?.errors?.['serverError'] }}</small
+      ><small
+        *ngIf="
+          shouldShowError('password') &&
+          !onLoginForm.get('password')?.hasError('serverError') &&
+          !onLoginForm.controls['password'].hasError('pattern')
+        "
+        class="text-danger"
+      >
+        Please enter Password!</small
+      ><small
+        class="text-danger"
+        *ngIf="onLoginForm.controls['password'].hasError('pattern')"
+      >
+        Invalid password.
+      </small>
+      <div class="forgot-pass">
+        <a href="#">Forgot Password?</a>
+      </div>
+      <button type="submit">Sign in</button>
+      <div class="sign-up">
+        Don't have an account?
+        <a routerLink="/register">signup now</a>
+      </div>
+    </form>
+  </div>
+</div>
